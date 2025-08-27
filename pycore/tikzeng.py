@@ -19,7 +19,10 @@ def to_cor():
 \def\UnpoolColor{rgb:blue,2;green,1;black,0.3}
 \def\FcColor{rgb:blue,5;red,2.5;white,5}
 \def\FcReluColor{rgb:blue,5;red,5;white,4}
-\def\SoftmaxColor{rgb:magenta,5;black,7}   
+\def\SoftmaxColor{rgb:magenta,5;black,7;white,7} 
+\def\BSoftmaxColor{rgb:magenta,5;black,7} 
+\def\FullyConnected{rgb:blue,2;green,1;white,1}  
+\def\BFullyConnected{rgb:blue,2;green,1;black,0.3} 
 \def\SumColor{rgb:blue,5;green,15}
 """
 
@@ -66,11 +69,28 @@ def to_ConvConvRelu( name, s_filer=256, n_filer=(64,64), offset="(0,0,0)", to="(
         name="""+ name +""",
         caption="""+ caption +""",
         xlabel={{ """+ str(n_filer[0]) +""", """+ str(n_filer[1]) +""" }},
-        zlabel="""+ str(s_filer) +""",
+        ylabel="""+ str(s_filer) +""",
         fill=\ConvColor,
         bandfill=\ConvReluColor,
         height="""+ str(height) +""",
         width={ """+ str(width[0]) +""" , """+ str(width[1]) +""" },
+        depth="""+ str(depth) +"""
+        }
+    };
+"""
+
+def to_ConvConvConvRelu( name, s_filer=256, n_filer=(64,64, 64), offset="(0,0,0)", to="(0,0,0)", width=(2,2, 2), height=40, depth=40, caption=" " ):
+    return r"""
+\pic[shift={ """+ offset +""" }] at """+ to +""" 
+    {RightBandedBox={
+        name="""+ name +""",
+        caption="""+ caption +""",
+        xlabel={{ """+ str(n_filer[0]) +""", """+ str(n_filer[1]) +""", """+ str(n_filer[2]) +""" }},
+        ylabel="""+ str(s_filer) +""",
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height="""+ str(height) +""",
+        width={ """+ str(width[0]) +""" , """+ str(width[1]) +""", """+ str(width[2]) +""" },
         depth="""+ str(depth) +"""
         }
     };
@@ -120,8 +140,8 @@ def to_ConvRes( name, s_filer=256, n_filer=64, offset="(0,0,0)", to="(0,0,0)", w
         caption="""+ caption + """,
         xlabel={{ """+ str(n_filer) + """, }},
         zlabel="""+ str(s_filer) +r""",
-        fill={rgb:white,1;black,3},
-        bandfill={rgb:white,1;black,2},
+        fill=\UnpoolColor,
+        bandfill=\UnpoolColor,
         opacity="""+ str(opacity) +""",
         height="""+ str(height) +""",
         width="""+ str(width) +""",
@@ -130,12 +150,29 @@ def to_ConvRes( name, s_filer=256, n_filer=64, offset="(0,0,0)", to="(0,0,0)", w
     };
 """
 
-
+# FullyConnected
+def to_FullyConnected( name, s_filer=10, n_filer=64, offset="(0,0,0)", to="(0,0,0)", width=1.5, height=3, depth=25, opacity=0.8, caption=" " ):
+    return r"""
+\pic[shift={ """+ offset +""" }] at """+ to +""" 
+    {RightBandedBox={
+        name="""+ name +""",
+        caption="""+ caption +""",
+        xlabel={"""+ str(n_filer) +""" },
+        zlabel="""+ str(s_filer) +r""",
+        fill=\FullyConnected,
+        bandfill=\BFullyConnected,
+        opacity="""+ str(opacity) +""",
+        height="""+ str(height) +""",
+        width={"""+ str(width) +""" },
+        depth="""+ str(depth) +"""
+        }
+    };
+"""
 # ConvSoftMax
 def to_ConvSoftMax( name, s_filer=40, offset="(0,0,0)", to="(0,0,0)", width=1, height=40, depth=40, caption=" " ):
     return r"""
 \pic[shift={"""+ offset +"""}] at """+ to +""" 
-    {Box={
+    {RightBandedBox={
         name=""" + name +""",
         caption="""+ caption +""",
         zlabel="""+ str(s_filer) +""",
@@ -151,12 +188,13 @@ def to_ConvSoftMax( name, s_filer=40, offset="(0,0,0)", to="(0,0,0)", width=1, h
 def to_SoftMax( name, s_filer=10, offset="(0,0,0)", to="(0,0,0)", width=1.5, height=3, depth=25, opacity=0.8, caption=" " ):
     return r"""
 \pic[shift={"""+ offset +"""}] at """+ to +""" 
-    {Box={
+    {RightBandedBox={
         name=""" + name +""",
         caption="""+ caption +""",
         xlabel={{" ","dummy"}},
         zlabel="""+ str(s_filer) +""",
         fill=\SoftmaxColor,
+        bandfill=\BSoftmaxColor,
         opacity="""+ str(opacity) +""",
         height="""+ str(height) +""",
         width="""+ str(width) +""",

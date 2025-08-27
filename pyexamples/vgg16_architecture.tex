@@ -1,0 +1,306 @@
+
+\node[canvas is zy plane at x=0] (temp) at (-3,0,0) {\includegraphics[width=8cm,height=8cm]{magikarp.jpg}};
+
+\pic[shift={ (0,0,0) }] at (0,0,0) 
+    {RightBandedBox={
+        name=conv1_1,
+        caption=Conv1_1,
+        xlabel={{ 64, 64 }},
+        zlabel=224,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=40,
+        width={ 2 , 2 },
+        depth=40
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv1_1-east) 
+    {RightBandedBox={
+        name=conv1_2,
+        caption=Conv1_2,
+        xlabel={{ 64, 64 }},
+        zlabel=224,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=40,
+        width={ 2 , 2 },
+        depth=40
+        }
+    };
+
+\pic[shift={ (0,0,0) }] at (conv1_2-east) 
+    {Box={
+        name=pool1,
+        caption=MaxPool,
+        fill=\PoolColor,
+        opacity=0.5,
+        height=20,
+        width=1,
+        depth=20
+        }
+    };
+
+\pic[shift={ (2,0,0) }] at (pool1-east) 
+    {RightBandedBox={
+        name=conv2_1,
+        caption=Conv2_1,
+        xlabel={{ 128, 128 }},
+        zlabel=112,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 4 , 4 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv2_1-east) 
+    {RightBandedBox={
+        name=conv2_2,
+        caption=Conv2_2,
+        xlabel={{ 128, 128 }},
+        zlabel=112,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 4 , 4 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (0,0,0) }] at (conv2_2-east) 
+    {Box={
+        name=pool2,
+        caption=MaxPool,
+        fill=\PoolColor,
+        opacity=0.5,
+        height=16,
+        width=1,
+        depth=16
+        }
+    };
+
+\pic[shift={ (2,0,0) }] at (pool2-east) 
+    {RightBandedBox={
+        name=conv3_1,
+        caption=Conv3_1,
+        xlabel={{ 256, 256 }},
+        zlabel=56,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 6 , 6 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv3_1-east) 
+    {RightBandedBox={
+        name=conv3_2,
+        caption=Conv3_2,
+        xlabel={{ 256, 256 }},
+        zlabel=56,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 6 , 6 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv3_2-east) 
+    {RightBandedBox={
+        name=conv3_3,
+        caption=Conv3_3,
+        xlabel={{ 256, 256 }},
+        zlabel=56,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 6 , 6 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (0,0,0) }] at (conv3_3-east) 
+    {Box={
+        name=pool3,
+        caption=MaxPool,
+        fill=\PoolColor,
+        opacity=0.5,
+        height=12,
+        width=1,
+        depth=12
+        }
+    };
+
+\pic[shift={ (2,0,0) }] at (pool3-east) 
+    {RightBandedBox={
+        name=conv4_1,
+        caption=Conv4_1,
+        xlabel={{ 512, 512 }},
+        zlabel=28,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv4_1-east) 
+    {RightBandedBox={
+        name=conv4_2,
+        caption=Conv4_2,
+        xlabel={{ 512, 512 }},
+        zlabel=28,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv4_2-east) 
+    {RightBandedBox={
+        name=conv4_3,
+        caption=Conv4_3,
+        xlabel={{ 512, 512 }},
+        zlabel=28,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (0,0,0) }] at (conv4_3-east) 
+    {Box={
+        name=pool4,
+        caption=MaxPool,
+        fill=\PoolColor,
+        opacity=0.5,
+        height=8,
+        width=1,
+        depth=8
+        }
+    };
+
+\pic[shift={ (2,0,0) }] at (pool4-east) 
+    {RightBandedBox={
+        name=conv5_1,
+        caption=Conv5_1,
+        xlabel={{ 512, 512 }},
+        zlabel=14,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv5_1-east) 
+    {RightBandedBox={
+        name=conv5_2,
+        caption=Conv5_2,
+        xlabel={{ 512, 512 }},
+        zlabel=14,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (conv5_2-east) 
+    {RightBandedBox={
+        name=conv5_3,
+        caption=Conv5_3,
+        xlabel={{ 512, 512 }},
+        zlabel=14,
+        fill=\ConvColor,
+        bandfill=\ConvReluColor,
+        height=32,
+        width={ 8 , 8 },
+        depth=32
+        }
+    };
+
+\pic[shift={ (0,0,0) }] at (conv5_3-east) 
+    {Box={
+        name=pool5,
+        caption=MaxPool,
+        fill=\PoolColor,
+        opacity=0.5,
+        height=6,
+        width=1,
+        depth=6
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (pool5-east) 
+    {RightBandedBox={
+        name=fc6,
+        caption=FC6,
+        xlabel={{ 4096, }},
+        zlabel=1,
+        fill={rgb:white,1;blue,2},
+        bandfill={rgb:white,1;blue,1},
+        opacity=0.8,
+        height=1,
+        width=20,
+        depth=1
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (fc6-east) 
+    {RightBandedBox={
+        name=fc7,
+        caption=FC7,
+        xlabel={{ 4096, }},
+        zlabel=1,
+        fill={rgb:white,1;blue,2},
+        bandfill={rgb:white,1;blue,1},
+        opacity=0.8,
+        height=1,
+        width=20,
+        depth=1
+        }
+    };
+
+\pic[shift={ (1,0,0) }] at (fc7-east) 
+    {RightBandedBox={
+        name=fc8,
+        caption=FC8,
+        xlabel={{ 1000, }},
+        zlabel=1,
+        fill={rgb:white,1;blue,2},
+        bandfill={rgb:white,1;blue,1},
+        opacity=0.8,
+        height=1,
+        width=20,
+        depth=1
+        }
+    };
+
+\pic[shift={(1,0,0)}] at (fc8-east) 
+    {Box={
+        name=soft1,
+        caption=SoftMax,
+        xlabel={{" ","dummy"}},
+        zlabel=1000,
+        fill=\SoftmaxColor,
+        opacity=0.8,
+        height=1,
+        width=1,
+        depth=1
+        }
+    };
+
+\end{tikzpicture}
+\end{document}
